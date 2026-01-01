@@ -1,0 +1,1 @@
+// DEPRECATED: Use app/layout.tsx and components/Providers.tsx for Next.js App Router structure.

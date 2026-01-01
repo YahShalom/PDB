@@ -1,0 +1,105 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --charcoal: #050509;
+  --gold: #F6B52E;
+  --cream: #F5EEE8;
+}
+
+body {
+  @apply bg-[#F5EEE8] dark:bg-[#050509] text-[#2a2a3f] dark:text-[#F5EEE8] antialiased transition-colors duration-300;
+}
+
+/* 1. Floating / Hover Effects */
+.floating-card {
+  @apply transition-all duration-300 will-change-transform;
+}
+
+.floating-card:hover, .floating-card:focus-within {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 15px 30px -5px rgba(246, 181, 46, 0.2), 0 0 20px rgba(246, 181, 46, 0.1);
+}
+
+/* 2. Gold Border Gradient */
+.gold-border-gradient {
+  position: relative;
+  z-index: 1;
+}
+
+.gold-border-gradient::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #B8860B, #F9D976, #F5E6C5, #D4AF37, #B8860B);
+  background-size: 200% 200%;
+  animation: shimmerGold 4s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes shimmerGold {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 3. Gold Dust Animation */
+.gold-dust-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.gold-particle {
+  position: absolute;
+  background: radial-gradient(circle, #FBD786 0%, #B8860B 100%);
+  border-radius: 50%;
+  opacity: 0;
+  animation-name: fall, sway;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+}
+
+@keyframes fall {
+  0% { top: -10%; opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { top: 110%; opacity: 0; }
+}
+
+@keyframes sway {
+  0% { transform: translateX(0px); }
+  50% { transform: translateX(15px); }
+  100% { transform: translateX(0px); }
+}
+
+/* 4. Text Color Fix for Gold Components */
+.gold-card-text {
+  color: #000000 !important;
+}
+.gold-card-text h1, .gold-card-text h2, .gold-card-text h3, .gold-card-text p, .gold-card-text span, .gold-card-text a, .gold-card-text svg {
+  color: #000000 !important;
+}
+.gold-card-text svg {
+  fill: currentColor;
+}
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

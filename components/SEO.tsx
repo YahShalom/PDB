@@ -1,0 +1,1 @@
+// DEPRECATED: Next.js Metadata API in page.tsx/layout.tsx is used for SEO instead.
